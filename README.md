@@ -22,8 +22,35 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
+## Undo/Redo Functionality
+
+### Overview
+
+The Undo/Redo feature is implemented using NgRx for state management in Angular, allowing users to revert or reapply changes to the form state.
+
+### Implementation Details
+
+- **State Structure:**
+
+  - `present`: The current state of the form.
+  - `history`: Stack of previous states for undo operations.
+  - `future`: Stack of states for redo operations.
+
+- **Actions and Reducer Logic:**
+  - **`saveState` Action:** Updates the `history` stack and clears the `future` stack when a new state is saved.
+  - **`undo` Action:** Reverts to the most recent state from the `history` stack and moves the current state to the `future` stack.
+  - **`redo` Action:** Advances to the most recent state from the `future` stack and updates the `history` stack with the current state.
+
+### Testing the Undo/Redo Functionality
+
+#### How to Test
+
+1. **Manual Testing:** Interact with the form to test undo and redo functionality manually, ensuring that changes are correctly reflected.
+
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-#
+---
+
+Feel free to customize any sections or add more details as needed!
