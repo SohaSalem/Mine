@@ -1,17 +1,17 @@
 // store/form.reducer.ts
 import { createReducer, on } from '@ngrx/store';
 import { saveState, undo, redo } from '../actions/form.actions';
+import {
+  FormStateHistory,
+  FormStateModel,
+} from '../../shared/models/form-state.model';
 
 export const formFeatureKey = 'form';
 
 export interface FormState {
-  present: any; // Current form state
+  present: FormStateModel; // Current form state
   history: FormStateHistory[]; // Undo stack
   future: FormStateHistory[]; // Redo stack
-}
-
-export interface FormStateHistory {
-  formValue: any;
 }
 
 // Define the initial state of the form
@@ -34,7 +34,7 @@ export const formReducer = createReducer(
       return {
         ...state,
         history: [...state.history, { formValue: state.present }],
-        future: [], // Clear future stack on new action
+        future: [],
         present: formValue,
       };
     }
